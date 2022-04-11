@@ -1,6 +1,4 @@
-//#include <bits/stdc++.h>
-#include <iostream>
-#include <vector>
+#include <bits/stdc++.h>
 
 using namespace std;
 
@@ -172,6 +170,8 @@ void BplusTree::split_index_node(node* r)
     }
     if(p==nullptr)
     {
+        //cout<<"p null\n";
+       // for(int i=0;i<r->data.size();i++)cout<<r->data[i];cout<<"||\n";
         p=new node(0,ic);
         p->data.push_back(mid);
         p->children.push_back(r);
@@ -182,14 +182,19 @@ void BplusTree::split_index_node(node* r)
         root->set_parent(nullptr);
         return;
     }
-    p->insert_in_node(mid);
-    p->insert_child_in_node(n2);
+    
     if(!p->isFull())
     {
+        p->insert_in_node(mid);
+        p->insert_child_in_node(n2);
+        n2->set_parent(p);
         return;
     }
     else
     {
+        p->insert_in_node(mid);
+        p->insert_child_in_node(n2);
+        n2->set_parent(p);
         split_index_node(p);
     }
 }
@@ -387,6 +392,7 @@ int main()
         if(command==2)
         {
             b.print_status();
+            //b.print();
         }
         if(command==3)
         {
