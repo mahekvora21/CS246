@@ -1,1 +1,1 @@
-# CS246
+# CS246 Practice Assignments
